@@ -1,13 +1,21 @@
 * {
     font-family: "Georgia", serif;
-    color: white;
 }
 
 body {
     background-color: rgb(0, 0, 0);
 }
 
+.buttons {
+    color: black;
+}
+
+#month {
+    color: white
+}
+
 .date {
+    color: white;
     border-radius: 25px;
     border: 2px, solid, #FFFFFF;
     width: 40px;
