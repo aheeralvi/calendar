@@ -1,5 +1,5 @@
 * {
-    font-family: "Georgia", serif;
+    font-family: "Helvetica", serif;
 }
 
 body {
@@ -18,12 +18,18 @@ body {
     color: white
 }
 
-.date {
+table {
+    border-spacing: 5px;
+    border: 2px solid white;
+}
+
+td {
     color: white;
-    border-radius: 20px;
-    border: 2px, solid, #FFFFFF;
+    border-radius: 10px;
+    border: 2px solid white;
     width: 40px;
     height: 40px;
+    text-align: center;
 }
 
 .date .red {
