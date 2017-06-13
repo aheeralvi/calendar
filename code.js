@@ -35,7 +35,6 @@ function checkDays() {
     }
 }
 
-
 //store events as Event objects
 function Event(name, date, start, end, type, location, notes) {
     this.name = title;

@@ -10,12 +10,17 @@ body {
     display: inline-block;
 }
 
-.buttons {
-    color: black;
+button {
+    color: white;
+    border: 2px solid white;
+    background: black;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
 #month {
-    color: white
+    color: white;
+    vertical-align: middle;
 }
 
 table {
