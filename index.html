@@ -8,14 +8,37 @@
 
 <body>
     <! Define the header of the calendar. Should include before/after month buttons, month title>
-    <div class='head'>
-        <span class='buttons' id='left'> <button type = 'button'> &#8592 </button> </span>
-        <span id='month'> <p>June</p></span>
-        <span class='buttons' id='right'> <button type = 'button'> &#8594 </button></span>
+    <div class='header'>
+        <div class='top' id='left'>
+            <button type='button' onclick='prevmonth()'> &#8592 </button>
+        </div>
+        <div class='top' id='month'>
+            <p>January</p>
+        </div>
+        <div class='top' id='right'>
+            <button type='button' onclick='nextmonth()'> &#8594 </button>
+        </div>
     </div>
 
     <! This is the calendar grid>
     <div class='grid'>
+        <table>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+
+        </table>
     </div>
     <script src='code.js'>
     </script>
