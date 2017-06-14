@@ -2,6 +2,9 @@
 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var currentMonth = 0;
 var numDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+var events = new Array(100);
+var currentEvent = 0;
+
 
 //function that acts onclick when right button is clicked. Changes to next month
 function nextmonth() {
@@ -81,6 +84,8 @@ function addToTable(newEvent) {
     if (newEvent.name == '' && newEvent.start == '' && newEvent.date == '') {
         return;
     }
+    events[currentEvent] = newEvent;
+    currentEvent++;
     var table = document.getElementsByClassName('list')[0]
     var newRow = document.createElement('tr');
     newRow.className = 'content';
@@ -106,6 +111,10 @@ function addToTable(newEvent) {
     prop = document.createElement('td');
     prop.innerText = newEvent.notes;
     newRow.appendChild(prop);
+    var counter = 0;
+    for (var i = 0; i < events.length; i++) {
+
+    }
     table.appendChild(newRow);
 }
 //store events as Event objects
@@ -117,4 +126,21 @@ function Event(name, date, start, end, type, location, notes) {
     this.type = type;
     this.location = location;
     this.notes = notes;
+    /*    this.compareTo = function(event) {
+            var month1 = this.date.substring(0, this.date.indexOf('/'));
+            var month2 = event.date.substring(0, event.date.indexOf('/'));
+            var day1 = this.date.substring(this.date.indexOf('/') + 1);
+            var day2 = this.date.substring(this.date.indexOf('/') + 1);
+            if (month1 > month2) {
+                return 1;
+            } else if (month1 == month2) {
+                if (day1 > day2) {
+                    return 1;
+                } else if (day1 == day2) {
+
+                }
+                return -1
+            }
+            return -1;
+        }*/
 }
