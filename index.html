@@ -20,52 +20,82 @@
         </div>
     </div>
 
-    <! This is the calendar grid. This portion is not operational yet>
-    <div class='grid'>
-        <table>
+    <! This is the calendar grid. The 31st and the lastrow have ID's in order to hide/show them>
+    <div>
+        <table class='grid'>
             <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
+                <td class='date'>1</td>
+                <td class='date'>2</td>
+                <td class='date'>3</td>
+                <td class='date'>4</td>
+                <td class='date'>5</td>
+                <td class='date'>6</td>
+                <td class='date'>7</td>
             </tr>
             <tr>
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
+                <td class='date'>8</td>
+                <td class='date'>9</td>
+                <td class='date'>10</td>
+                <td class='date'>11</td>
+                <td class='date'>12</td>
+                <td class='date'>13</td>
+                <td class='date'>14</td>
             </tr>
             <tr>
-                <td>15</td>
-                <td>16</td>
-                <td>17</td>
-                <td>18</td>
-                <td>19</td>
-                <td>20</td>
-                <td>21</td>
+                <td class='date'>15</td>
+                <td class='date'>16</td>
+                <td class='date'>17</td>
+                <td class='date'>18</td>
+                <td class='date'>19</td>
+                <td class='date'>20</td>
+                <td class='date'>21</td>
             </tr>
             <tr>
-                <td>22</td>
-                <td>23</td>
-                <td>24</td>
-                <td>25</td>
-                <td>26</td>
-                <td>27</td>
-                <td>28</td>
+                <td class='date'>22</td>
+                <td class='date'>23</td>
+                <td class='date'>24</td>
+                <td class='date'>25</td>
+                <td class='date'>26</td>
+                <td class='date'>27</td>
+                <td class='date'>28</td>
             </tr>
             <tr id='lastrow'>
-                <td>29</td>
-                <td>30</td>
-                <td id='31'>31</td>
+                <td class='date'>29</td>
+                <td class='date'>30</td>
+                <td class='date' id='31'>31</td>
             </tr>
 
         </table>
+    </div>
+    <div>
+        <!Table will list all events in chronological order>
+        <table class='list'>
+            <tr>
+                <th>Event Title</th>
+                <th>Date</th>
+                <th>Starts at</th>
+                <th>Ends at</th>
+                <th>Event Type (<span>home, busy, important)</th>
+                <th>Location</th>
+                <th>Additional Notes</th>
+            </tr>
+            <tr class = 'addevent'>
+                <td><input id='name'></td>
+                <td><input id='date'></td>
+                <td><input id='start'></td>
+                <td><input id='end'></td>
+                <td><select id='type'>
+                    <option value='Home'>Home</option>
+                    <option value='Work'>Work</option>
+                    <option value='Important'>Important</option>
+                    </select>
+                </td>
+                <td><input id='location'></td>
+                <td><input id='notes'></td>
+            </tr>
+        </table>
+        <button type='button' id = 'addEvent' onclick='showRow()'>Add Event</button>
+        <button type='button' id='add' onclick='clickAdd()'>Add</button>
     </div>
     <script src='code.js'>
     </script>
