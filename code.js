@@ -36,8 +36,9 @@ function checkDays() {
 }
 
 function showRow() {
-    document.getElementsByClassName('addevent')[0].style.display = 'table-row';
+    document.getElementsByClassName('lastrow')[0].style.display = 'table-row';
     document.getElementById('add').style.display = 'inline-block';
+    document.getElementById('cancel').style.display = 'inline-block';
     document.getElementById('addEvent').style.display = 'none';
 }
 
@@ -48,12 +49,13 @@ function clearForms() {
     document.getElementById('end').value = '';
     document.getElementById('location').value = '';
     document.getElementById('notes').value = '';
-
+    return;
 }
 
 function clickAdd() {
     document.getElementById('addEvent').style.display = 'inline-block';
     document.getElementById('add').style.display = 'none';
+    document.getElementById('cancel').style.display = 'none';
     var name = document.getElementById('name').value;
     var date = document.getElementById('date').value;
     var start = document.getElementById('start').value;
@@ -62,13 +64,53 @@ function clickAdd() {
     var location = document.getElementById('location').value;
     var notes = document.getElementById('notes').value;
     clearForms();
-    document.getElementsByClassName('addevent')[0].style.display = 'none';
+    document.getElementsByClassName('lastrow')[0].style.display = 'none';
     var newEvent = new Event(name, date, start, end, type, location, notes);
     addToTable(newEvent);
 }
+
+function clickCancel() {
+    clearForms();
+    document.getElementById('addEvent').style.display = 'inline-block';
+    document.getElementById('add').style.display = 'none';
+    document.getElementById('cancel').style.display = 'none';
+    document.getElementsByClassName('lastrow')[0].style.display = 'none';
+}
+
+function addToTable(newEvent) {
+    if (newEvent.name == '' && newEvent.start == '' && newEvent.date == '') {
+        return;
+    }
+    var table = document.getElementsByClassName('list')[0]
+    var newRow = document.createElement('tr');
+    newRow.className = 'content';
+    newRow.style.display = 'table-row';
+    var prop = document.createElement('td');
+    prop.innerText = newEvent.name;
+    newRow.appendChild(prop)
+    prop = document.createElement('td');
+    prop.innerText = newEvent.date;
+    newRow.appendChild(prop)
+    prop = document.createElement('td');
+    prop.innerText = newEvent.start;
+    newRow.appendChild(prop)
+    prop = document.createElement('td');
+    prop.innerText = newEvent.end;
+    newRow.appendChild(prop)
+    prop = document.createElement('td');
+    prop.innerText = newEvent.type;
+    newRow.appendChild(prop)
+    prop = document.createElement('td');
+    prop.innerText = newEvent.location;
+    newRow.appendChild(prop)
+    prop = document.createElement('td');
+    prop.innerText = newEvent.notes;
+    newRow.appendChild(prop);
+    table.appendChild(newRow);
+}
 //store events as Event objects
 function Event(name, date, start, end, type, location, notes) {
-    this.name = title;
+    this.name = name;
     this.date = date;
     this.start = start;
     this.end = end;

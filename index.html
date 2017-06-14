@@ -68,6 +68,7 @@
         </table>
     </div>
     <div>
+        <p></p>
         <!Table will list all events in chronological order>
         <table class='list'>
             <tr>
@@ -75,11 +76,11 @@
                 <th>Date</th>
                 <th>Starts at</th>
                 <th>Ends at</th>
-                <th>Event Type (<span>home, busy, important)</th>
+                <th>Event Type (home, busy, important)</th>
                 <th>Location</th>
                 <th>Additional Notes</th>
             </tr>
-            <tr class = 'addevent'>
+            <tr class='lastrow'>
                 <td><input id='name'></td>
                 <td><input id='date'></td>
                 <td><input id='start'></td>
@@ -94,8 +95,10 @@
                 <td><input id='notes'></td>
             </tr>
         </table>
-        <button type='button' id = 'addEvent' onclick='showRow()'>Add Event</button>
+        <p></p>
+        <button type='button' id='addEvent' onclick='showRow()'>Add Event</button>
         <button type='button' id='add' onclick='clickAdd()'>Add</button>
+        <button type='button' id='cancel' onclick='clickCancel()'>Cancel</button>
     </div>
     <script src='code.js'>
     </script>
