@@ -12,6 +12,8 @@ function nextmonth() {
         currentMonth = 0;
     }
     document.getElementById('month').innerText = months[currentMonth];
+    //check the number of days in that month
+    //color the days based on what events are happening that month
     checkDays()
     colorGrid()
     return;
@@ -24,6 +26,8 @@ function prevmonth() {
         currentMonth = 11;
     }
     document.getElementById('month').innerText = months[currentMonth];
+    //check the number of days in that month
+    //color the days based on what events are happening that month
     checkDays();
     colorGrid();
     return;
@@ -42,6 +46,7 @@ function checkDays() {
     return;
 }
 
+//shows the forms for adding events, and the appropriate buttons
 function showRow() {
     document.getElementsByClassName('lastrow')[0].style.display = 'table-row';
     document.getElementById('add').style.display = 'inline-block';
@@ -50,6 +55,7 @@ function showRow() {
     return;
 }
 
+//clears all forms of information
 function clearForms() {
     document.getElementById('name').value = '';
     document.getElementById('date').value = '';
@@ -60,6 +66,7 @@ function clearForms() {
     return;
 }
 
+//acts when the add button is clicked. Stores info in event objects
 function clickAdd() {
     document.getElementById('addEvent').style.display = 'inline-block';
     document.getElementById('add').style.display = 'none';
@@ -71,14 +78,18 @@ function clickAdd() {
     var type = document.getElementById('type').value;
     var location = document.getElementById('location').value;
     var notes = document.getElementById('notes').value;
+    //refresh all the forms
     clearForms();
     document.getElementsByClassName('lastrow')[0].style.display = 'none';
     var newEvent = new Event(name, date, start, end, type, location, notes);
+    //add event to the table
+    //color the grid based on what events are occurring that month
     addToTable(newEvent);
     colorGrid();
     return;
 }
 
+//acts when the cancel button is clicked
 function clickCancel() {
     clearForms();
     document.getElementById('addEvent').style.display = 'inline-block';
@@ -88,6 +99,7 @@ function clickCancel() {
     return;
 }
 
+//adds an event into the table
 function addToTable(newEvent) {
     if (newEvent.name == '' && newEvent.start == '' && newEvent.date == '') {
         return;
@@ -114,7 +126,6 @@ function addToTable(newEvent) {
     prop.innerText = newEvent.type;
     newRow.appendChild(prop)
     prop = document.createElement('td');
-
     newRow.appendChild(prop)
     prop = document.createElement('td');
     prop.innerText = newEvent.notes;
@@ -133,6 +144,7 @@ function addToTable(newEvent) {
     return;
 }
 
+//colors the grid based on what events are occurring in the dates
 function colorGrid() {
     for (var i = 0; i < 30; i++) {
         document.getElementsByClassName('date')[i].id = '';
