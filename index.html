@@ -7,21 +7,28 @@
 </head>
 
 <body>
-    <! Define the header of the calendar. Should include before/after month buttons, month title>
-    <div class='header'>
-        <div class='top' id='left'>
-            <button type='button' onclick='prevmonth()'> &#8592 </button>
-        </div>
-        <div class='top' id='month'>
-            <p>January</p>
-        </div>
-        <div class='top' id='right'>
-            <button type='button' onclick='nextmonth()'> &#8594 </button>
-        </div>
-    </div>
-
     <! This is the calendar grid. The 31st and the lastrow have ID's in order to hide/show them>
     <div>
+        <table class='grid'>
+            <tr>
+                <! Define the header of the calendar. Should include before/after month buttons, month title>
+                <th>
+                    <div class='top' id='left'>
+                        <button type='button' onclick='prevmonth()'> &#8592 </button>
+                    </div>
+                </th>
+                <th>
+                    <div class='top' id='month'>
+                        <p>January</p>
+                    </div>
+                </th>
+                <th>
+                    <div class='top' id='right'>
+                        <button type='button' onclick='nextmonth()'> &#8594 </button>
+                    </div>
+                </th>
+            </tr>
+        </table>
         <table class='grid'>
             <tr>
                 <td class='date'>1</td>
@@ -62,7 +69,7 @@
             <tr id='lastrow'>
                 <td class='date'>29</td>
                 <td class='date'>30</td>
-                <td class='date' id='31'>31</td>
+                <td class='date31' id='31'>31</td>
             </tr>
 
         </table>

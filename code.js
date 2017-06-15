@@ -5,7 +5,6 @@ var numDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 var events = new Array(100);
 var currentEvent = 0;
 
-
 //function that acts onclick when right button is clicked. Changes to next month
 function nextmonth() {
     currentMonth++;
@@ -14,6 +13,8 @@ function nextmonth() {
     }
     document.getElementById('month').innerText = months[currentMonth];
     checkDays()
+    colorGrid()
+    return;
 }
 
 //function that acts onclick when left button is clicked. Changes to previous month
@@ -24,18 +25,21 @@ function prevmonth() {
     }
     document.getElementById('month').innerText = months[currentMonth];
     checkDays();
+    colorGrid();
+    return;
 }
 
 //the following function determines how many days should be included in the table
 function checkDays() {
     if (numDays[currentMonth] == 31) {
         document.getElementById('lastrow').style.display = 'table-row';
-        document.getElementById('31').style.display = 'table-cell';
+        document.getElementsByClassName('date31')[0].style.display = 'table-cell';
     } else if (numDays[currentMonth] == 30) {
-        document.getElementById('31').style.display = 'none';
+        document.getElementsByClassName('date31')[0].style.display = 'none';
     } else if (numDays[currentMonth] == 28) {
         document.getElementById('lastrow').style.display = 'none';
     }
+    return;
 }
 
 function showRow() {
@@ -43,6 +47,7 @@ function showRow() {
     document.getElementById('add').style.display = 'inline-block';
     document.getElementById('cancel').style.display = 'inline-block';
     document.getElementById('addEvent').style.display = 'none';
+    return;
 }
 
 function clearForms() {
@@ -70,6 +75,8 @@ function clickAdd() {
     document.getElementsByClassName('lastrow')[0].style.display = 'none';
     var newEvent = new Event(name, date, start, end, type, location, notes);
     addToTable(newEvent);
+    colorGrid();
+    return;
 }
 
 function clickCancel() {
@@ -78,6 +85,7 @@ function clickCancel() {
     document.getElementById('add').style.display = 'none';
     document.getElementById('cancel').style.display = 'none';
     document.getElementsByClassName('lastrow')[0].style.display = 'none';
+    return;
 }
 
 function addToTable(newEvent) {
@@ -106,17 +114,46 @@ function addToTable(newEvent) {
     prop.innerText = newEvent.type;
     newRow.appendChild(prop)
     prop = document.createElement('td');
-    prop.innerText = newEvent.location;
+
     newRow.appendChild(prop)
     prop = document.createElement('td');
     prop.innerText = newEvent.notes;
     newRow.appendChild(prop);
-    var counter = 0;
-    for (var i = 0; i < events.length; i++) {
-
-    }
     table.appendChild(newRow);
+    /*if (currentEvent == 1) {
+        table.appendChild(newRow)
+    } else {
+        var counter = 0;
+        while (events[counter].compareTo(newEvent) == -1) {
+            counter++;
+        }
+        table.insertBefore(newRow, table.childNodes[counter + 2]);
+    }*/
+
+    return;
 }
+
+function colorGrid() {
+    for (var i = 0; i < 30; i++) {
+        document.getElementsByClassName('date')[i].id = '';
+    }
+    document.getElementsByClassName('date31')[0].id = '';
+    for (var i = 0; i < events.length; i++) {
+        var temporary = events[i].date.substring(0, events[i].date.indexOf('/'));
+        if (temporary == currentMonth + 1) {
+            var date = events[i].date.substring(events[i].date.indexOf('/') + 1);
+            if (events[i].type == 'Important') {
+                document.getElementsByClassName('date')[date - 1].id += 'red';
+
+            } else if (events[i].type == 'Home') {
+                document.getElementsByClassName('date')[date - 1].id += 'green';
+            } else {
+                document.getElementsByClassName('date')[date - 1].id += 'blue'
+            }
+        }
+    }
+}
+
 //store events as Event objects
 function Event(name, date, start, end, type, location, notes) {
     this.name = name;
@@ -126,21 +163,22 @@ function Event(name, date, start, end, type, location, notes) {
     this.type = type;
     this.location = location;
     this.notes = notes;
-    /*    this.compareTo = function(event) {
-            var month1 = this.date.substring(0, this.date.indexOf('/'));
-            var month2 = event.date.substring(0, event.date.indexOf('/'));
-            var day1 = this.date.substring(this.date.indexOf('/') + 1);
-            var day2 = this.date.substring(this.date.indexOf('/') + 1);
-            if (month1 > month2) {
+    this.compareTo = function(event) {
+        var month1 = this.date.substring(0, this.date.indexOf('/'));
+        var month2 = event.date.substring(0, event.date.indexOf('/'));
+        var day1 = this.date.substring(this.date.indexOf('/') + 1);
+        var day2 = event.date.substring(this.date.indexOf('/') + 1);
+        alert(day1 + " " + day2);
+        if (month1 > month2) {
+            return 1;
+        } else if (month1 == month2) {
+            if (day1 > day2) {
                 return 1;
-            } else if (month1 == month2) {
-                if (day1 > day2) {
-                    return 1;
-                } else if (day1 == day2) {
-
-                }
-                return -1
+            } else if (day1 == day2) {
+                return 0;
             }
             return -1;
-        }*/
+        }
+        return -1;
+    }
 }
