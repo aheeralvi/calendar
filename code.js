@@ -205,10 +205,11 @@ function Event(name, date, start, end, type, location, notes) {
 }*/
 
 var compare = function(event1, event2) {
-    var month1 = event1.date.substring(0, event1.date.indexOf('/'));
-    var month2 = event2.date.substring(0, event2.date.indexOf('/'));
-    var day1 = event1.date.substring(event1.date.indexOf('/') + 1);
-    var day2 = event2.date.substring(event2.date.indexOf('/') + 1);
+    var month1 = parseInt(event1.date.substring(0, event1.date.indexOf('/')));
+    var month2 = parseInt(event2.date.substring(0, event2.date.indexOf('/')));
+    var day1 = parseInt(event1.date.substring(event1.date.indexOf('/') + 1));
+    var day2 = parseInt(event2.date.substring(event2.date.indexOf('/') + 1));
+
     if (month1 > month2) {
         return 1;
     } else if (month1 == month2) {
