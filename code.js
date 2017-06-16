@@ -153,7 +153,6 @@ function addToTable(newEvent) {
             break;
         }
     }
-    alert("hi");
 
 }
 
