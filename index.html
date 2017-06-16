@@ -9,23 +9,23 @@
 <body>
     <! This is the calendar grid. The 31st and the lastrow have ID's in order to hide/show them>
     <div>
-        <table class='grid' id='head' <tr>
-            <! Define the header of the calendar. Should include before/after month buttons, month title>
-            <th>
-                <div class='top' id='left'>
-                    <button type='button' onclick='prevmonth()'> &#8592 </button>
-                </div>
-            </th>
-            <th>
-                <div class='top' id='month'>
-                    <p>January</p>
-                </div>
-            </th>
-            <th>
-                <div class='top' id='right'>
-                    <button type='button' onclick='nextmonth()'> &#8594 </button>
-                </div>
-            </th>
+        <table class='grid' id='head' <! Define the header of the calendar. Should include before/after month buttons, month title>
+            <tr>
+                <th>
+                    <div class='top' id='left'>
+                        <button type='button' onclick='prevmonth()'> &#8592 </button>
+                    </div>
+                </th>
+                <th>
+                    <div class='top' id='month'>
+                        <p>January</p>
+                    </div>
+                </th>
+                <th>
+                    <div class='top' id='right'>
+                        <button type='button' onclick='nextmonth()'> &#8594 </button>
+                    </div>
+                </th>
             </tr>
         </table>
         <table class='grid'>
