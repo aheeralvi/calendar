@@ -5,7 +5,7 @@ var numDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 var events = new Array(100);
 var currentEvent = 0;
 
-function dateMouseOver() {
+/*function dateMouseOver() {
     var allDates = document.getElementsByClassName('date');
     for (var c in allDates) {
         c.onmouseover = 'specify()';
@@ -15,7 +15,7 @@ function dateMouseOver() {
     document.getElementsByClassName('date31').onmouseover = 'specify()';
     document.getElementsByClassName('date31').onmouseout = 'generalize()';
     document.getElementsByClassName('date31').id = '31';
-}
+}*/
 //function that acts onclick when right button is clicked. Changes to next month
 function nextmonth() {
     currentMonth++;
