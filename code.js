@@ -5,6 +5,17 @@ var numDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 var events = new Array(100);
 var currentEvent = 0;
 
+function dateMouseOver() {
+    var allDates = document.getElementsByClassName('date');
+    for (var c in allDates) {
+        c.onmouseover = 'specify()';
+        c.onmouseout = 'generalize()';
+        c.id = c.innerText;
+    }
+    document.getElementsByClassName('date31').onmouseover = 'specify()';
+    document.getElementsByClassName('date31').onmouseout = 'generalize()';
+    document.getElementsByClassName('date31').id = '31';
+}
 //function that acts onclick when right button is clicked. Changes to next month
 function nextmonth() {
     currentMonth++;
@@ -104,44 +115,46 @@ function addToTable(newEvent) {
     if (newEvent.name == '' && newEvent.start == '' && newEvent.date == '') {
         return;
     }
-    events[currentEvent] = newEvent;
-    currentEvent++;
     var table = document.getElementsByClassName('list')[0]
-    var newRow = document.createElement('tr');
-    newRow.className = 'content';
-    newRow.style.display = 'table-row';
-    var prop = document.createElement('td');
-    prop.innerText = newEvent.name;
-    newRow.appendChild(prop)
-    prop = document.createElement('td');
-    prop.innerText = newEvent.date;
-    newRow.appendChild(prop)
-    prop = document.createElement('td');
-    prop.innerText = newEvent.start;
-    newRow.appendChild(prop)
-    prop = document.createElement('td');
-    prop.innerText = newEvent.end;
-    newRow.appendChild(prop)
-    prop = document.createElement('td');
-    prop.innerText = newEvent.type;
-    newRow.appendChild(prop)
-    prop = document.createElement('td');
-    newRow.appendChild(prop)
-    prop = document.createElement('td');
-    prop.innerText = newEvent.notes;
-    newRow.appendChild(prop);
-    table.appendChild(newRow);
-    /*if (currentEvent == 1) {
-        table.appendChild(newRow)
-    } else {
-        var counter = 0;
-        while (events[counter].compareTo(newEvent) == -1) {
-            counter++;
+    currentEvent++;
+    events[currentEvent] = newEvent;
+    events.sort(compare);
+    var variable = document.getElementsByClassName('content');
+    for (var i = 0; i < variable.length; i++) {
+        variable[i].style.display = 'none'
+    }
+    for (var i = 0; i < events.length; i++) {
+        var newRow = document.createElement('tr');
+        newRow.className = 'content' + " " + currentEvent;
+        newRow.style.display = 'table-row';
+        var prop = document.createElement('td');
+        prop.innerText = events[i].name;
+        newRow.appendChild(prop)
+        prop = document.createElement('td');
+        prop.innerText = events[i].date;
+        newRow.appendChild(prop)
+        prop = document.createElement('td');
+        prop.innerText = events[i].start;
+        newRow.appendChild(prop)
+        prop = document.createElement('td');
+        prop.innerText = events[i].end;
+        newRow.appendChild(prop)
+        prop = document.createElement('td');
+        prop.innerText = events[i].type;
+        newRow.appendChild(prop)
+        prop = document.createElement('td');
+        newRow.appendChild(prop)
+        prop.innerText = events[i].location;
+        prop = document.createElement('td');
+        prop.innerText = events[i].notes;
+        newRow.appendChild(prop);
+        table.appendChild(newRow);
+        if (currentEvent - 1 == i) {
+            break;
         }
-        table.insertBefore(newRow, table.childNodes[counter + 2]);
-    }*/
+    }
+    alert("hi");
 
-    return;
 }
 
 //colors the grid based on what events are occurring in the dates
@@ -175,22 +188,37 @@ function Event(name, date, start, end, type, location, notes) {
     this.type = type;
     this.location = location;
     this.notes = notes;
-    this.compareTo = function(event) {
-        var month1 = this.date.substring(0, this.date.indexOf('/'));
-        var month2 = event.date.substring(0, event.date.indexOf('/'));
-        var day1 = this.date.substring(this.date.indexOf('/') + 1);
-        var day2 = event.date.substring(this.date.indexOf('/') + 1);
-        alert(day1 + " " + day2);
-        if (month1 > month2) {
+
+}
+
+/*function specify(date) {
+        var elementsToHide = document.getElementsByClassName('content ' + currentEvent);
+    for (var element in elementsToHide) {
+        if (element.childNodes[1].innerText == '')
+    }
+}*/
+
+/*function generalize(date) {
+    var elementsToShow = document.getElementsByClassName('content ' + currentEvent);
+    for (var element in elementsToShow) {
+        element.style.display = 'table-row';
+    }
+}*/
+
+var compare = function(event1, event2) {
+    var month1 = event1.date.substring(0, event1.date.indexOf('/'));
+    var month2 = event2.date.substring(0, event2.date.indexOf('/'));
+    var day1 = event1.date.substring(event1.date.indexOf('/') + 1);
+    var day2 = event2.date.substring(event2.date.indexOf('/') + 1);
+    if (month1 > month2) {
+        return 1;
+    } else if (month1 == month2) {
+        if (day1 > day2) {
             return 1;
-        } else if (month1 == month2) {
-            if (day1 > day2) {
-                return 1;
-            } else if (day1 == day2) {
-                return 0;
-            }
-            return -1;
+        } else if (day1 == day2) {
+            return 0;
         }
         return -1;
     }
+    return -1;
 }

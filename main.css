@@ -35,6 +35,10 @@ button:hover {
     margin: 0px auto;
 }
 
+#head {
+    height: 65px;
+}
+
 .date,
 .date31 {
     color: white;
