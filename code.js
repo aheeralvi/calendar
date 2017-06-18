@@ -16,6 +16,7 @@ var currentEvent = 0;
     document.getElementsByClassName('date31').onmouseout = 'generalize()';
     document.getElementsByClassName('date31').id = '31';
 }*/
+
 //function that acts onclick when right button is clicked. Changes to next month
 function nextmonth() {
     currentMonth++;
